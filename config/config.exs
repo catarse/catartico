@@ -1,6 +1,7 @@
 # This file is responsible for configuring your application
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
+import System, only: [get_env: 1]
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
@@ -28,3 +29,5 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+config :catartico, Catartico, database: get_env("DB_NAME"), hostname: get_env("DB_HOST"), port: get_env("DB_PORT"), username: get_env("DB_USER"), password: get_env("DB_PASSWORD")
