@@ -1,0 +1,2 @@
+defmodule Catartico do
+end
