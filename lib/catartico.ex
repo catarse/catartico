@@ -7,6 +7,6 @@ defmodule Catartico do
   """
 
   listen do
-    channel "catartico_conversions", Catartico.Conversions, :process, []
+    channel "catartico_conversions", Catartico.Rdstation, :process, []
   end
 end
