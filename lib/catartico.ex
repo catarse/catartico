@@ -6,9 +6,7 @@ defmodule Catartico do
   Listen database and distribute messages to another processes.
   """
 
-  @conversions_channel "catartico_conversions"
-
   listen do
-    channel @conversions_channel, Catartico.Conversions, :process, []
+    channel "catartico_conversions", Catartico.Conversions, :process, []
   end
 end
