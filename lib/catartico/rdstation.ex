@@ -34,11 +34,14 @@ defmodule Catartico.Rdstation do
   end
 
   defp _sent encoded do
-    Logger.info "[RD] sending enconded event json to rdstation -> #{encoded}"
-    HTTPoison.post(
-      @conversions_endpoint,
-      encoded,
-      [{"Content-Type", "application/json"}]
-    )
+    if is_nil(@token) do
+      Logger.warn "[RD] MISSING ENV RD_TOKEN!!!"
+    else
+      Logger.info "[RD] sending enconded event json to rdstation -> #{encoded}"
+      HTTPoison.post(
+        @conversions_endpoint,
+        encoded,
+        [{"Content-Type", "application/json"}])
+    end
   end
 end
