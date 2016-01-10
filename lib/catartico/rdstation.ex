@@ -15,8 +15,12 @@ defmodule Catartico.Rdstation do
   Handles with transformation of payload and sent to rdstation conversions api
   """
   def process(_, payload) do
-    Logger.info "[RD] Received payload #{payload}"
-    payload |> _transform |> _sent
+    Task.start_link(
+      fn ->
+        Logger.info "[RD] Received payload #{payload}"
+        payload |> _transform |> _sent
+      end
+    )
   end
 
   defp _transform payload do
