@@ -5,6 +5,7 @@ defmodule Catartico.Rdstation do
 
   @base_url "https://www.rdstation.com.br/api/1.3"
   @conversions_endpoint "#{@base_url}/conversions"
+  @token System.get_env("RD_TOKEN")
 
   @moduledoc """
   Handles payload from catartico_conversions channel
@@ -19,12 +20,12 @@ defmodule Catartico.Rdstation do
   end
 
   defp _transform payload do
-    Logger.info "[RD] Transforming payload -> #payload}"
+    Logger.info "[RD] Transforming payload -> #{payload}"
     d = Poison.decode!(payload)
     %{
       identificador: d["event_name"],
       email: d["email"],
-      token_rdstation: System.get_env("RD_TOKEN")
+      token_rdstation: @token
     } |> Poison.encode!
   end
 
