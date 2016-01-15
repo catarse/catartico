@@ -29,6 +29,7 @@ defmodule Catartico.Rdstation do
     %{
       identificador: d["event_name"],
       email: d["email"],
+      nome: d["name"],
       token_rdstation: @token
     } |> Poison.encode!
   end
