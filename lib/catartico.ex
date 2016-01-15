@@ -1,4 +1,5 @@
 defmodule Catartico do
+  use Application
   use Boltun, otp_app: :catartico
   require Logger
 
@@ -8,5 +9,10 @@ defmodule Catartico do
 
   listen do
     channel "catartico_rdstation", Catartico.Rdstation, :process, []
+  end
+
+  def start(_type, _args) do
+    Logger.info "Starting catartico process.."
+    Catartico.start_link()
   end
 end
