@@ -30,4 +30,4 @@ import System, only: [get_env: 1]
 #
 #     import_config "#{Mix.env}.exs"
 
-config :catartico, Catartico, database: get_env("DB_NAME"), hostname: get_env("DB_HOST"), port: get_env("DB_PORT"), username: get_env("DB_USER"), password: get_env("DB_PASSWORD")
+config :catartico, Catartico.DBListener, database: get_env("DB_NAME"), hostname: get_env("DB_HOST"), port: get_env("DB_PORT"), username: get_env("DB_USER"), password: get_env("DB_PASSWORD")

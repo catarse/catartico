@@ -1,18 +1,28 @@
 defmodule Catartico do
   use Application
-  use Boltun, otp_app: :catartico
   require Logger
 
   @moduledoc """
   Listen database and distribute messages to another processes.
   """
 
-  listen do
-    channel "catartico_rdstation", Catartico.Rdstation, :process, []
+  defmodule DBListener do
+    use Boltun, otp_app: :catartico
+    listen do
+      channel "catartico_rdstation", Catartico.Rdstation, :process, []
+    end
   end
 
   def start(_type, _args) do
     Logger.info "Starting catartico process.."
-    Catartico.start_link()
+    import Supervisor.Spec, warn: false
+
+    children = [
+      worker(Catartico.DBListener, [])
+    ]
+
+    opts = [strategy: :one_for_one, name: Catartico.Supervisor]
+    Logger.info "Catartico started..."
+    Supervisor.start_link(children, opts)
   end
 end
