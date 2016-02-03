@@ -38,7 +38,8 @@ defmodule Catartico.Mixfile do
     [
       {:boltun, "~> 0.0.4"},
       {:httpoison, "~> 0.8.0"},
-      {:poison, "~> 1.5.0"}
+      {:poison, "~> 1.5.0"},
+      {:exrm, "~> 1.0.0-rc7"}
     ]
   end
 end
